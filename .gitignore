@@ -1,0 +1,15 @@
+# Specify files to be ignored by git
+# See: https://git-scm.com/docs/gitignore
+
+# Do not include machine-specific files, e.g. `.DS_Store` or `.vscode`.
+# It is contributor’s responsibility to ignore such files using their global
+# gitignore file.
+
+# Ignore runtime artifacts
+*.log
+
+# Ignore development artifacts
+/lib
+
+# Ignore dependencies
+/node_modules

@@ -1,0 +1,91 @@
+{
+  "name": "classnames.macro",
+  "version": "0.0.0",
+  "description": "Babel Macro for conditionally joining CSS class names together",
+  "keywords": [
+    "babel-macros"
+  ],
+  "homepage": "https://github.com/kinday/classnames.macro#readme",
+  "bugs": {
+    "url": "https://github.com/kinday/classnames.macro/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kinday/classnames.macro"
+  },
+  "license": "MIT",
+  "author": "Leonard Kinday <leonard@kinday.ru>",
+  "main": "lib/classnames.macro.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "babel -d lib src",
+    "lint": "eslint src",
+    "prepack": "npm run build",
+    "test": "ava",
+    "posttest": "npm run lint",
+    "test:watch": "ava --watch"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": 14
+          }
+        }
+      ]
+    ]
+  },
+  "prettier": {
+    "quoteProps": "consistent",
+    "semi": false
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true
+    },
+    "parser": "@babel/eslint-parser",
+    "extends": [
+      "pedant",
+      "prettier"
+    ]
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/git",
+        {
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ],
+      "@semantic-release/npm",
+      "@semantic-release/github"
+    ]
+  },
+  "ava": {
+    "require": "@babel/register"
+  },
+  "dependencies": {
+    "babel-plugin-macros": "^3.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/eslint-parser": "^7.16.3",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/register": "^7.16.0",
+    "@semantic-release/git": "^10.0.1",
+    "ava": "^3.15.0",
+    "common-tags": "^1.4.0",
+    "eslint": "^8.4.1",
+    "eslint-config-pedant": "^1.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.5.1",
+    "semantic-release": "^18.0.1"
+  }
+}
