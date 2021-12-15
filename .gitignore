@@ -9,6 +9,7 @@
 *.log
 
 # Ignore development artifacts
+/coverage
 /lib
 
 # Ignore dependencies
