@@ -99,14 +99,14 @@ export default createMacro(({ babel, references: { default: paths } }) => {
       babel.types.isMemberExpression(node) ||
       babel.types.isIdentifier(node)
     ) {
-      return babel.types.binaryExpression(
-        "+",
-        babel.types.stringLiteral(" "),
-        babel.types.logicalExpression(
-          "||",
-          node,
-          babel.types.stringLiteral(""),
-        )
+      return babel.types.conditionalExpression(
+        node,
+        babel.types.binaryExpression(
+          "+",
+          babel.types.stringLiteral(" "),
+          node
+        ),
+        babel.types.stringLiteral("")
       )
     }
 

@@ -20,7 +20,7 @@ test("variable", (t) => {
 
   const expected = stripIndent`
     const something = false;
-    const CLASS_NAMES = "py-2" + (" " + (something || ""));
+    const CLASS_NAMES = "py-2" + (something ? " " + something : "");
   `
 
   const output = run(input)
@@ -140,7 +140,7 @@ test("variables", (t) => {
   `
 
   const expected = stripIndent`
-    const CLASS_NAMES = "px-1" + (" " + (props.className || ""));
+    const CLASS_NAMES = "px-1" + (props.className ? " " + props.className : "");
   `
 
   const output = run(input)
@@ -161,7 +161,7 @@ test("mixed", (t) => {
   `
 
   const expected = stripIndent`
-    const CLASS_NAMES = "bar qux" + ((props.foo ? " foo fighters" : "") + ((props.baz ? " baz" : "") + (" " + (props.className || ""))));
+    const CLASS_NAMES = "bar qux" + ((props.foo ? " foo fighters" : "") + ((props.baz ? " baz" : "") + (props.className ? " " + props.className : "")));
   `
 
   const output = run(input)
