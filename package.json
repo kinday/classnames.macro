@@ -20,6 +20,7 @@
     "lib"
   ],
   "scripts": {
+    "benchmark": "babel --no-babelrc --plugins=macros benchmark.js | node",
     "build": "babel -d lib src",
     "lint": "eslint src",
     "prepack": "npm run build",
@@ -81,11 +82,18 @@
     "@babel/register": "^7.16.0",
     "@semantic-release/git": "^10.0.1",
     "ava": "^3.15.0",
+    "benny": "^3.7.1",
     "c8": "^7.10.0",
+    "classcat": "^5.0.3",
+    "classnames-joiner": "^1.0.1",
+    "classnames": "^2.3.1",
+    "classnamesx": "^1.0.4",
+    "clsx": "^1.1.1",
     "common-tags": "^1.4.0",
-    "eslint": "^8.4.1",
     "eslint-config-pedant": "^1.0.1",
     "eslint-config-prettier": "^8.3.0",
+    "eslint": "^8.4.1",
+    "html-classes": "^1.2.0",
     "prettier": "^2.5.1",
     "semantic-release": "^18.0.1"
   }
