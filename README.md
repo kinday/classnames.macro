@@ -41,6 +41,20 @@ function getClassName(options) {
 }
 ```
 
+## Performance
+
+`classnames.macro` outperforms (20 to 100 times faster) packages with similar API:
+
+| Package            | Results                   | Notes                  |
+| ------------------ | ------------------------- | ---------------------- |
+| `classcat`         | 5 336 322 ops/s, ±0.37%   | 95.06% slower          |
+| `classnames`       | 1 962 814 ops/s, ±0.17%   | slowest, 98.18% slower |
+| `classnames.macro` | 107 975 749 ops/s, ±0.27% | **fastest**            |
+| `clsx`             | 4 886 815 ops/s, ±0.27%   | 95.47% slower          |
+| `html-classes`     | 4 410 463 ops/s, ±0.17%   | 95.92% slower          |
+
+Benchmark source can be found in `benchmark.js`. To run the benchmark, clone the repo, install dependencies, build the package (`yarn build`) and run benchmark (`yarn benchmark`).
+
 ## License
 
 **MIT**
