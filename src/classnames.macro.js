@@ -35,13 +35,24 @@ export default createMacro(({ babel, references: { default: paths } }) => {
     return babel.types.arrayExpression(elements)
   }
 
+  function unpackObjectProperty(objectProperty) {
+    const shouldStringify = objectProperty.computed
+      ? babel.types.isStringLiteral(objectProperty.key)
+      : babel.types.isIdentifier(objectProperty.key)
+
+    const right = shouldStringify
+      ? babel.types.stringLiteral(
+          objectProperty.computed
+            ? objectProperty.key.value
+            : objectProperty.key.name
+        )
+      : objectProperty.key
+
+    return babel.types.logicalExpression("&&", objectProperty.value, right)
+  }
+
   function unpackObject(objectExpression) {
-    const elements = objectExpression.properties.map((prop) => {
-      const right = babel.types.isIdentifier(prop.key)
-        ? babel.types.stringLiteral(prop.key.name)
-        : prop.key
-      return babel.types.logicalExpression("&&", prop.value, right)
-    })
+    const elements = objectExpression.properties.map(unpackObjectProperty)
 
     return babel.types.arrayExpression(elements)
   }

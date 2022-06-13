@@ -133,6 +133,54 @@ test("objects", (t) => {
   t.is(output, expected)
 })
 
+test("computed properties (identifier)", (t) => {
+  const input = stripIndent`
+    import classNames from '../src/classnames.macro';
+    const CLASS_NAMES = classNames({
+      [bar]: props.bar,
+    });
+  `
+
+  const expected = stripIndent`
+    const CLASS_NAMES = "" + (props.bar ? bar ? " " + bar : "" : "");
+  `
+
+  const output = run(input)
+  t.is(output, expected)
+})
+
+test("computed properties (member expression)", (t) => {
+  const input = stripIndent`
+    import classNames from '../src/classnames.macro';
+    const CLASS_NAMES = classNames({
+      [styles.baz]: props.baz
+    });
+  `
+
+  const expected = stripIndent`
+    const CLASS_NAMES = "" + (props.baz ? styles.baz ? " " + styles.baz : "" : "");
+  `
+
+  const output = run(input)
+  t.is(output, expected)
+})
+
+test("computed properties (string)", (t) => {
+  const input = stripIndent`
+    import classNames from '../src/classnames.macro';
+    const CLASS_NAMES = classNames({
+      ["foo"]: props.foo,
+    });
+  `
+
+  const expected = stripIndent`
+    const CLASS_NAMES = "" + (props.foo ? " foo" : "");
+  `
+
+  const output = run(input)
+  t.is(output, expected)
+})
+
 test("variables", (t) => {
   const input = stripIndent`
     import classNames from '../src/classnames.macro';
