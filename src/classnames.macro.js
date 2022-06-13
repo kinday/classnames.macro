@@ -112,11 +112,7 @@ export default createMacro(({ babel, references: { default: paths } }) => {
     ) {
       return babel.types.conditionalExpression(
         node,
-        babel.types.binaryExpression(
-          "+",
-          babel.types.stringLiteral(" "),
-          node
-        ),
+        babel.types.binaryExpression("+", babel.types.stringLiteral(" "), node),
         babel.types.stringLiteral("")
       )
     }
@@ -161,10 +157,11 @@ export default createMacro(({ babel, references: { default: paths } }) => {
   function getValue(input) {
     const { elements } = unpackArray(input)
     const filteredElements = elements.filter(
-      (element) => !babel.types.isNullLiteral(element)
-      && !(babel.types.isIdentifier(element) && element.name === 'undefined' )
-      && !(babel.types.isBooleanLiteral(element) && element.value === false)
-    );
+      (element) =>
+        !babel.types.isNullLiteral(element) &&
+        !(babel.types.isIdentifier(element) && element.name === "undefined") &&
+        !(babel.types.isBooleanLiteral(element) && element.value === false)
+    )
 
     const values = groupBy((node) => {
       if (babel.types.isStringLiteral(node)) {
