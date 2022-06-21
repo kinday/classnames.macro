@@ -117,6 +117,10 @@ export default createMacro(({ babel, references: { default: paths } }) => {
       )
     }
 
+    if (babel.types.isTemplateLiteral(node)) {
+      return babel.types.binaryExpression("+", babel.types.stringLiteral(getPrefix()), node);
+    }
+
     // TODO: This probably does not belong here
     if (babel.types.isStringLiteral(node)) {
       if (node.value.indexOf(" ") !== 0) {

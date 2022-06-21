@@ -157,7 +157,7 @@ test("computed properties (template string)", (t) => {
     });
   `
 
-  const expected = 'const CLASS_NAMES = "baz" + (props.bar ? " " +`bar--${bar}` : "");';
+  const expected = 'const CLASS_NAMES = "baz" + (props.bar ? " " + `bar--${bar}` : "");';
 
   const output = run(input)
   t.is(output, expected)
