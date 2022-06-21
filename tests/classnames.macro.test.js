@@ -149,6 +149,20 @@ test("computed properties (identifier)", (t) => {
   t.is(output, expected)
 })
 
+test("computed properties (template string)", (t) => {
+  const input = stripIndent`
+    import classNames from '../src/classnames.macro';
+    const CLASS_NAMES = classNames('baz', {
+      [\`bar--\${bar}\`]: props.bar,
+    });
+  `
+
+  const expected = 'const CLASS_NAMES = "baz" + (props.bar ? " " +`bar--${bar}` : "");';
+
+  const output = run(input)
+  t.is(output, expected)
+})
+
 test("computed properties (member expression)", (t) => {
   const input = stripIndent`
     import classNames from '../src/classnames.macro';
