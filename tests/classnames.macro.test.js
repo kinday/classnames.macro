@@ -41,6 +41,18 @@ test("strings", (t) => {
   t.is(output, expected)
 })
 
+test("strings (template string)", (t) => {
+  const input = stripIndent`
+    import classNames from '../src/classnames.macro';
+    const CLASS_NAMES = classNames("px-1", \`py-\${spaceY}\`);
+  `
+
+  const expected = 'const CLASS_NAMES = "px-1" + (" " + `py-${spaceY}`);'
+
+  const output = run(input)
+  t.is(output, expected)
+})
+
 test("null", (t) => {
   const input = stripIndent`
     import classNames from '../src/classnames.macro';
